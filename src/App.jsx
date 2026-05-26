@@ -10,6 +10,7 @@ const Customers = lazy(() => import("./pages/Customers"));
 const CustomerDetail = lazy(() => import("./pages/CustomerDetail"));
 const Product = lazy(() => import("./pages/Product"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const FiturXYZ = lazy(() => import("./pages/FiturXYZ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const BadRequest = lazy(() => import("./pages/BadRequest"));
 const Unauthorized = lazy(() => import("./pages/Unauthorized"));
@@ -29,6 +30,7 @@ function App() {
           <Route path="/customers/:id" element={<CustomerDetail />} />
           <Route path="/products" element={<Product />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/fitur-xyz" element={<FiturXYZ />} />
           <Route path="/error/400" element={<BadRequest />} />
           <Route path="/error/401" element={<Unauthorized />} />
           <Route path="/error/403" element={<Forbidden />} />
