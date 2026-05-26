@@ -30,6 +30,8 @@ export default function FiturXYZ() {
         <CardFooter className="flex gap-2">
           <Button>Simpan</Button>
           <Button variant="outline">Batal</Button>
+          <Button variant="ghost">Batal</Button>
+          <Button variant="destructive">Batal</Button>
         </CardFooter>
       </Card>
     </div>
