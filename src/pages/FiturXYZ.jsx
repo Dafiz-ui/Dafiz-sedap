@@ -1,19 +1,37 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function FiturXYZ() {
   return (
     <div className="p-6">
-      <PageHeader title="Fitur XYZ" subtitle="Percobaan fitur baru di branch coba-fitur-xyz" />
+      <PageHeader title="Fitur XYZ" subtitle="Percobaan fitur baru di branch komponen-shadcnui" />
 
-      <div className="mt-6 bg-white p-6 rounded-lg shadow-sm">
-        <h3 className="text-lg font-semibold">Selamat datang di Fitur XYZ</h3>
-        <p className="text-sm text-gray-600 mt-2">Halaman ini dibuat untuk mendemonstrasikan pembuatan branch dan penambahan menu baru.</p>
+      <Card className="mt-4 w-[380px]">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle>Belajar shadcn/ui</CardTitle>
+            <Badge variant="secondary">Baru</Badge>
+          </div>
+          <CardDescription>
+            Contoh penggunaan komponen shadcn/ui di React
+          </CardDescription>
+        </CardHeader>
 
-        <div className="mt-4">
-          <button className="bg-hijau text-white px-4 py-2 rounded-md">Contoh Tombol</button>
-        </div>
-      </div>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Komponen ini dibuat di branch <strong>komponen-shadcnui</strong>
+            lalu di-merge ke main.
+          </p>
+        </CardContent>
+
+        <CardFooter className="flex gap-2">
+          <Button>Simpan</Button>
+          <Button variant="outline">Batal</Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
