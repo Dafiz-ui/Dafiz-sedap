@@ -50,6 +50,12 @@ export default function Sidebar() {
                             <span className="font-barlow">Fitur XYZ</span>
                         </NavLink>
                     </li>
+                     <li>
+                        <NavLink to="/notes" className={menuClass}>
+                            <FaPlus className="mr-4 text-xl" />
+                            <span className="font-barlow">Notes</span>
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
 

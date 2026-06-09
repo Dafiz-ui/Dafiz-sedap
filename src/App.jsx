@@ -18,6 +18,7 @@ const Forbidden = lazy(() => import("./pages/Forbidden"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
 const Forgot = lazy(() => import("./pages/auth/Forgot"));
+const Notes = lazy(() => import("./pages/Note"));
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/error/400" element={<BadRequest />} />
           <Route path="/error/401" element={<Unauthorized />} />
           <Route path="/error/403" element={<Forbidden />} />
+          <Route path="/notes" element={<Notes />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
