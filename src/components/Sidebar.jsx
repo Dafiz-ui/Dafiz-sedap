@@ -1,7 +1,10 @@
 import { FaHome, FaShoppingCart, FaUsers, FaBox, FaPlus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/useAuth";
 
 export default function Sidebar() {
+  const { profile } = useAuth();
+  const isAdmin = profile?.role === "admin";
   const menuClass = ({ isActive }) =>
     `flex cursor-pointer items-center rounded-xl p-4 space-x-2
     ${isActive ?
@@ -32,12 +35,14 @@ export default function Sidebar() {
                             <span className="font-barlow">Orders</span>
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/customers" className={menuClass}>
-                            <FaUsers className="mr-4 text-xl" />
-                            <span className="font-barlow">Customers</span>
-                        </NavLink>
-                    </li>
+                    {isAdmin && (
+                        <li>
+                            <NavLink to="/customers" className={menuClass}>
+                                <FaUsers className="mr-4 text-xl" />
+                                <span className="font-barlow">Customers</span>
+                            </NavLink>
+                        </li>
+                    )}
                     <li>
                         <NavLink to="/products" className={menuClass}>
                             <FaBox className="mr-4 text-xl" />

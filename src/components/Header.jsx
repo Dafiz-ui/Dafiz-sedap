@@ -1,8 +1,18 @@
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FcAreaChart } from "react-icons/fc";
 import { SlSettings } from "react-icons/sl";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/useAuth";
 
 export default function Header() {
+    const navigate = useNavigate();
+    const { profile, logout } = useAuth();
+
+    const handleLogout = async () => {
+        await logout();
+        navigate("/login");
+    };
+
     return (
         <div id="header-container" className="bg-white shadow p-4 flex justify-between items-center">
             <div id="search-bar" className="relative flex-1 max-w-lg">
@@ -29,13 +39,20 @@ export default function Header() {
 
                 <div id="profile-container" className="flex items-center space-x-4 border-l pl-4 border-gray-300">
                     <span id="profile-text" className="font-barlow text-teks">
-                        Hi, <b>Dafiz Zaidan</b>
+                        Hi, <b>{profile?.full_name || profile?.email || "User"}</b>
                     </span>
                     <img
                         id="profile-avatar"
                         src="https://avatar.iran.liara.run/public/28"
                         className="w-10 h-10 rounded-full"
                     />
+                    <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-lg"
+                    >
+                        Logout
+                    </button>
                 </div>
             </div>
         </div>

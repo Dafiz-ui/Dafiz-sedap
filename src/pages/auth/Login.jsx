@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
+import { authAPI } from "../../services/authAPI";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -28,23 +28,10 @@ export default function Login() {
         setError("");
 
         try {
-            const response = await axios.post("https://dummyjson.com/user/login", {
-                username: dataForm.email,
-                password: dataForm.password,
-            });
-
-            if (response.status !== 200) {
-                setError(response.data?.message || "Login failed");
-                return;
-            }
-
+            await authAPI.login(dataForm.email, dataForm.password);
             navigate("/");
         } catch (err) {
-            if (err.response) {
-                setError(err.response.data?.message || "An error occurred");
-            } else {
-                setError(err.message || "An unknown error occurred");
-            }
+            setError(err.message || "Login failed");
         } finally {
             setLoading(false);
         }

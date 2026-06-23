@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import Loading from "./components/Loading";
+import ProtectedRoute from "./components/ProtectedRoute";
+import RoleRoute from "./components/RoleRoute";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Orders = lazy(() => import("./pages/Orders"));
@@ -24,19 +26,23 @@ function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/customers" element={<Customers />} />
-          <Route path="/customers/:id" element={<CustomerDetail />} />
-          <Route path="/products" element={<Product />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/fitur-xyz" element={<FiturXYZ />} />
-          <Route path="/error/400" element={<BadRequest />} />
-          <Route path="/error/401" element={<Unauthorized />} />
-          <Route path="/error/403" element={<Forbidden />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="*" element={<NotFound />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route element={<RoleRoute roles={["admin"]} />}>
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/customers/:id" element={<CustomerDetail />} />
+            </Route>
+            <Route path="/products" element={<Product />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/fitur-xyz" element={<FiturXYZ />} />
+            <Route path="/error/400" element={<BadRequest />} />
+            <Route path="/error/401" element={<Unauthorized />} />
+            <Route path="/error/403" element={<Forbidden />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Route>
 
         <Route element={<AuthLayout />}>
