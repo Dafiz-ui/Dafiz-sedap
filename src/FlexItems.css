@@ -1,0 +1,14 @@
+.flex-container {
+    display: flex;
+    /* flex-direction: row-reverse; */
+    justify-content: center;
+    background-color: Purple;
+    width: 800px;
+    }
+   
+    .flex-container > div {
+    background-color: Orange;
+    margin: 30px;
+    padding: 20px;
+    font-size: 20px;
+    }
